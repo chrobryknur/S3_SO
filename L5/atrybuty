@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+echo -e "Atrybuty atrybuty.mp4:\n"
+getfattr -d atrybuty.mp4
+touch plik.txt
+echo -e "Atrubuty plik.txt:\n"
+getfattr -d plik.txt
+md5=$(md5sum plik.txt)
+echo -e "Suma md5 plik.txt:\n$md5\n"
+setfattr -n user.md5sum -v $md5 plik.txt
+echo -e "Nowe atrybuty plik.txt:\n"
+getfattr -d plik.txt
+rm plik.txt
